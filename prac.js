@@ -81,6 +81,8 @@ function playGame (){
         scores()
 
         if (playerScore == 3 || computerScore == 3){
+            newGame.style.width = '250px'
+            newGame.style.height = '50px'
             newGame.style.backgroundColor = 'blue'
             document.body.removeChild(gameWrapper)
             return    
