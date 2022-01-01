@@ -8,11 +8,18 @@ let choicePlayer;
 let playerScore = 0;
 let computerScore = 0;
 
-const btns = document.querySelectorAll('.btn');
+const btns = document.querySelectorAll('img');
 const para = document.querySelector('p')
 const showPlayerScore = document.querySelector('#player-score')
 const showComputerScore = document.querySelector('#computer-score')
-const btnWrapper = document.querySelector('#btn-wrapper');
+const gameWrapper = document.querySelector('#game-wrapper');
+const spockImage = document.querySelector('#spock-img')
+const body = document.querySelector('body')
+const textResults = document.querySelector('.text-results')
+
+// spockImage.addEventListener('click', ()=> {
+//     body.style.backgroundColor = 'red'
+// })
 
 // Creating a button to refresh page
 const newGame = document.getElementById('refresh')
@@ -21,7 +28,6 @@ newGame.classList.add('refresh');
 newGame.addEventListener('click',()=> {
     refreshPage();
 });
-
 
 function scores () {
     showPlayerScore.textContent = playerScore;
@@ -43,12 +49,10 @@ function compareScore(difference){
     }
 }
 
-
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 5);
     return choiceComputer = options[randomNum];
 } 
-
 
 function playRound (choicePlayer, choiceComputer) {
     if (choicePlayer === undefined){
@@ -65,7 +69,7 @@ function playRound (choicePlayer, choiceComputer) {
         difference -= 2; // 4 - 2 = 2. you lose.
     }
     compareScore(difference);
-    console.log(`You played ${choicePlayer} and ${result[difference]} ${choiceComputer}`);  
+    textResults.textContent = `You played ${choicePlayer} and ${result[difference]} ${choiceComputer}`;  
 };
 
 function playGame (){
@@ -78,7 +82,7 @@ function playGame (){
 
         if (playerScore == 3 || computerScore == 3){
             newGame.style.backgroundColor = 'blue'
-            document.body.removeChild(btnWrapper)
+            document.body.removeChild(gameWrapper)
             return    
         }
     }
@@ -86,22 +90,19 @@ function playGame (){
         alert(`I think you broke it`)
         scores()
         newGame.style.backgroundColor = 'green'
-        document.body.removeChild(btnWrapper)
+        document.body.removeChild(gameWrapper)
         return
     
     }
 }
-
 
 // Function to refresh page
 function refreshPage() {
     window.location.reload(true);
 }
 
-
-
-btns.forEach((button)=>{button.addEventListener('click',()=>{
-    choicePlayer = button.id
+btns.forEach((image)=>{image.addEventListener('click',()=>{
+    choicePlayer = image.id
     getComputerChoice();  
     playGame()
     })
