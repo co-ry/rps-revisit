@@ -4,8 +4,10 @@ html {
 
 #game-wrapper{
     display: flex;
-
     justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 200px;
 }
 
 .image-choice{
